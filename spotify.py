@@ -55,9 +55,20 @@ def get_df():
 
 
 def write_table(df, dbName):
+    os.system("mysqldump -u root -pcodio database_name > file_name.sql")
     engine = create_engine('mysql://root:codio@localhost/{}'.format(dbName))
     df.to_sql('table_name', con=engine, if_exists='replace', index=False)
 
+def save_file():
+    engine = create_engine('mysql://root:codio@localhost/{}'.format(dbName))
+    df.to_sql('table_name', con=engine, if_exists='replace', index=False)
+
+os.system("mysqldump -u root -pcodio database_name > file_name.sql"
+)
+def load():
+os.system("mysqldump -u root -pcodio database_name > file_name.sql")
+
+ os.system("mysql -u root -pcodio data_base_name < file_name.sql")
 
 # import requests
 # import spotipy
