@@ -17,3 +17,7 @@ jobs:
 
       - name: Check Style
         run: pycodestyle --first *.py
+        
+      - name: Add a Badge
+        run: https://github.com/github/docs/actions/workflows/main.yml/badge.svg?event=pull_request
+~                                                                                                     
