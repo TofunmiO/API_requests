@@ -20,4 +20,4 @@ jobs:
         
       - name: Add a Badge
         run: https://github.com/github/docs/actions/workflows/main.yml/badge.svg?event=pull_request
-~                                                                                                     
+~       https://img.shields.io/badge/<LABEL>-<MESSAGE>-<COLOR>                                                                                              
