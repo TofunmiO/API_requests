@@ -48,10 +48,10 @@ def get_json(url):
 
 
 # creating data frame to add data to
-def get_df():
+def get_df(r):
     col_names = ['energy', 'liveness', 'type']
     df = pd.DataFrame(columns=col_names)
-    df.loc[len(df.index)] = [1, 2, 3]
+    df.loc[len(df.index)] = [r['energy'], r['liveness'], r['type']]
     return df
 
 
@@ -66,10 +66,17 @@ def save_file(df,dbName, fileName):
     df.to_sql('table_name', con=engine, if_exists='replace', index=False)
     os.system("mysqldump -u root -pcodio {} > {}.sql".format(dbName,fileName))
 
-def load():
+def load(df, fileName):
     os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS '
               + dbName + '; "')
     os.system("mysql -u root -pcodio {} < {}.sql".format(dbName,fileName))
+    
+#     function to update database
+def update_database(df, dbName, fileName):
+    load(df, fileName)
+    # write_table(df, users, user_data, 'append')
+    df = pd.read_sql_table(dbName, con=create_engine_function(users))
+    return df
 
 def main():
 
